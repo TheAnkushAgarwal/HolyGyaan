@@ -13,10 +13,19 @@ import {
 
 export default function OffcanvasWithActions() {
   const [isOpen, setIsOpen] = useState(false);
+  const [tvalue, settvalue] = useState("");
 
   function closeOffcanvas() {
     setIsOpen(false);
+
+    const answer = await fetch( "https://localhost:3000/api/v1/BhagavadGita/query", {
+      method : 'POST',
+      body : JSON.stringify({
+        "query": value,
+    })
+  })
   }
+
 
   function openOffcanvas() {
     setIsOpen(true);
@@ -35,7 +44,7 @@ export default function OffcanvasWithActions() {
         <div className=" items-center justify-center rounded-lg  py-32 px-20  h-[70vh]">
           {/* Offcanvas Toggle Button */}
           <h1 className="mx-auto text-4xl text-white my-20 flex items-center justify-center">Bhagavad Gita</h1>
-          <TextareaElement className="my-20"/>
+          <TextareaElement value={tvalue} className="my-20"/>
           <button
             onClick={openOffcanvas}
             type="button"
