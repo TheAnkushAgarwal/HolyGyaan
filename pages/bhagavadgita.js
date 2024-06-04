@@ -18,6 +18,8 @@ export default function OffcanvasWithActions() {
   const [textValue, setTextValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [textAns, setTextAns] = useState("");
+  const [translateAns, setTranslateAns] = useState("")
+  const [selectedLanguage, setSelectedLanguage] = useState("");
 
   const handleTextareaChange = (event) => {
     setTextValue(event.target.value);
@@ -26,6 +28,15 @@ export default function OffcanvasWithActions() {
   const handleAnswer = (event) => {
     setTextAns(event.target.value);
   };
+
+  const handleTranslation = (event) => {
+    setTranslateAns(event.target.value);
+  };
+
+  const handleSelectChange = (value) => {
+    setSelectedLanguage(value);
+  };
+
   function closeOffcanvas() {
     setIsOpen(false);
     setTextAns("");
@@ -52,6 +63,24 @@ export default function OffcanvasWithActions() {
       });
   }
 
+  function changeLanguage(){
+    axios({
+      url: `${db_url}/api/v1/translate/query`,
+      data: {
+        query: textAns,
+        lang: selectedLanguage
+      },
+      method: "post",
+    })
+      .then((response) => {
+        if (response.data.chatMessage.status == "completed")
+          setTextAns(response.data.chatMessage.answer);
+        else setTextAns("OOPS! feels like rush hour crowd");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   return (
     <>
       {/* Offcanvas: With Actions */}
@@ -143,17 +172,18 @@ export default function OffcanvasWithActions() {
                     />
                     <div className="flex my-5">
                       <p className="mr-5">Translation to</p>
-                      <FormElementsLargeSelect className="mx-20" />
+                      <FormElementsLargeSelect className="mx-20" onSelectChange={handleSelectChange}/>
 
                       <button
                         type="button"
+                        onClick={changeLanguage}
                         className="inline-flex items-center justify-center gap-2 rounded-lg border border-purple-700 bg-purple-700 px-3 py-2 text-sm font-semibold leading-5 text-white hover:border-purple-600 hover:bg-purple-600 hover:text-white focus:ring focus:ring-purple-400/50 active:border-purple-700 active:bg-purple-700 dark:focus:ring-purple-400/90 ml-20"
                       >
                         Translate
                       </button>
                     </div>
 
-                    <GeneratedTextareaElement value={"translating..."} />
+                    <GeneratedTextareaElement value={translateAns} onClick={handleTranslation}/>
                     {/* 
                     <TextareaElement className= "flex h-full flex-col items-center justify-center gap-5 rounded-lg border-2 border-dashed border-gray-200 dark:border-gray-700/75"/> */}
                   </div>
