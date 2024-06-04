@@ -29,6 +29,7 @@ export default function OffcanvasWithActions() {
     setTextAns("");
   }
 
+
   function openOffcanvas() {
     setIsOpen(true);
     axios({
