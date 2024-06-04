@@ -64,6 +64,8 @@ export default function OffcanvasWithActions() {
   }
 
   function changeLanguage(){
+    console.log(selectedLanguage);
+    console.log(textAns);
     axios({
       url: `${db_url}/api/v1/translate/query`,
       data: {
@@ -73,7 +75,9 @@ export default function OffcanvasWithActions() {
       method: "post",
     })
       .then((response) => {
-          setTranslateAns(response.data.translation);
+        if (response.data.chatMessage.status == "completed")
+          setTranslateAns(response.data.chatMessage.answer);
+        else setTranslateAns("OOPS! feels like rush hour crowd");
       })
       .catch((err) => {
         console.error(err);

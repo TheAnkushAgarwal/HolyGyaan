@@ -1,4 +1,6 @@
-export default function FormElementsLargeSelect() {
+import { useState } from "react";
+
+export default function FormElementsLargeSelect({onSelectChange}) {
   const [selectedValue, setSelectedValue] = useState('');
 
   const handleSelectChange = (event) => {
@@ -21,12 +23,11 @@ export default function FormElementsLargeSelect() {
               onChange={handleSelectChange}
               className="block w-full rounded-lg border border-gray-200 px-5 py-3 leading-6 focus:border-purple-500 focus:ring focus:ring-purple-500/50 dark:border-gray-600 dark:bg-gray-800 dark:focus:border-purple-500"
             >
-              <option>English</option>
-              <option>Hindi</option>
-              <option>Sanskrit</option>
-              <option>Arabic</option>
-              <option>  Punjabi</option>
-              <option>Chinese</option>
+              <option>en</option>
+              <option>hi</option>
+              <option>san</option>
+              <option>ara</option>
+              <option>zh</option>
             </select>
           </div>
           {/* END Select Box */}
