@@ -1,6 +1,8 @@
 import { useState } from "react";
 import TextareaElement from "@/components/ui/Textarea";
 import GeneratedTextareaElement from "@/components/ui/GeneratedTextArea";
+import FormElementsLargeSelect from "@/components/ui/SelectMenu";
+import 'dotenv/config';
 import axios from "axios";
 
 // Headless UI 2.x for React, for more info and examples you can check out https://github.com/tailwindlabs/headlessui
@@ -13,40 +15,41 @@ import {
 } from "@headlessui/react";
 
 export default function OffcanvasWithActions() {
-  const [textValue, setTextValue] = useState('');
+  const [textValue, setTextValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [textAns, setTextAns] = useState('');
+  const [textAns, setTextAns] = useState("");
 
   const handleTextareaChange = (event) => {
     setTextValue(event.target.value);
   };
 
-  const handleAnswer = (event) =>{
+  const handleAnswer = (event) => {
     setTextAns(event.target.value);
-  }
+  };
   function closeOffcanvas() {
     setIsOpen(false);
     setTextAns("");
   }
 
+  const db_url = process.env.BASE_URL 
 
   function openOffcanvas() {
     setIsOpen(true);
     axios({
-      url: "http://localhost:8000/api/v1/BhagavadGita/query",
+      url: `${db_url}/api/v1/BhagavadGita/query`,
       data: {
-        query: textValue
+        query: textValue,
       },
-      method: "post"
+      method: "post",
     })
       .then((response) => {
-        if(response.data.chatMessage.status == "completed")
-          setTextAns(response.data.chatMessage.answer)
-        else setTextAns("OOPS! feels like rush hour crowd")
-      }) 
+        if (response.data.chatMessage.status == "completed")
+          setTextAns(response.data.chatMessage.answer);
+        else setTextAns("OOPS! feels like rush hour crowd");
+      })
       .catch((err) => {
         console.error(err);
-      })
+      });
   }
 
   return (
@@ -56,8 +59,14 @@ export default function OffcanvasWithActions() {
         {/* Placeholder */}
         <div className=" items-center justify-center rounded-lg  py-32 px-20  h-[65vh]">
           {/* Offcanvas Toggle Button */}
-          <h1 className="mx-auto text-4xl text-white my-20 flex items-center justify-center">Bhagavad Gita</h1>
-          <TextareaElement value={textValue} onChange={handleTextareaChange} className="my-20 h-[50%]"/>
+          <h1 className="mx-auto text-4xl text-white my-20 flex items-center justify-center">
+            Bhagavad Gita
+          </h1>
+          <TextareaElement
+            value={textValue}
+            onChange={handleTextareaChange}
+            className="my-20 h-[50%]"
+          />
           <button
             onClick={openOffcanvas}
             type="button"
@@ -95,7 +104,7 @@ export default function OffcanvasWithActions() {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <DialogPanel className="absolute right-0 top-0 flex h-dvh w-72 flex-col bg-white shadow-lg dark:bg-gray-900 dark:text-gray-100 dark:shadow-gray-950 sm:w-full md:w-[50%]">
+                <DialogPanel className="absolute right-0 top-0 flex h-dvh w-72 flex-col bg-white shadow-lg dark:bg-gray-900 dark:text-gray-100 dark:shadow-gray-950 sm:w-full md:w-[80%]">
                   {/* Header */}
                   <div className="flex min-h-16 flex-none items-center justify-between border-b border-gray-100 px-5 dark:border-gray-800 md:px-7">
                     <DialogTitle as="h3" className="py-5 font-medium">
@@ -127,12 +136,26 @@ export default function OffcanvasWithActions() {
 
                   {/* Content */}
                   <div className="flex grow flex-col overflow-y-auto p-5 md:p-7">
-                  
                     {/* Placeholder */}
-                    <GeneratedTextareaElement value={textAns} onChange={handleAnswer}/>
-{/* 
+                    <GeneratedTextareaElement
+                      value={textAns}
+                      onChange={handleAnswer}
+                    />
+                    <div className="flex my-5">
+                      <p className="mr-5">Translation to</p>
+                      <FormElementsLargeSelect className="mx-20" />
+
+                      <button
+                        type="button"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg border border-purple-700 bg-purple-700 px-3 py-2 text-sm font-semibold leading-5 text-white hover:border-purple-600 hover:bg-purple-600 hover:text-white focus:ring focus:ring-purple-400/50 active:border-purple-700 active:bg-purple-700 dark:focus:ring-purple-400/90 ml-20"
+                      >
+                        Translate
+                      </button>
+                    </div>
+
+                    <GeneratedTextareaElement value={"translating..."} />
+                    {/* 
                     <TextareaElement className= "flex h-full flex-col items-center justify-center gap-5 rounded-lg border-2 border-dashed border-gray-200 dark:border-gray-700/75"/> */}
-                    
                   </div>
                   {/* END Content */}
 
@@ -145,7 +168,6 @@ export default function OffcanvasWithActions() {
                     >
                       Keep Asking
                     </button>
-
                   </div>
                   {/* END Actions */}
                 </DialogPanel>

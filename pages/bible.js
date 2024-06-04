@@ -1,7 +1,9 @@
 import { useState } from "react";
 import TextareaElement from "@/components/ui/Textarea";
 import GeneratedTextareaElement from "@/components/ui/GeneratedTextArea";
+import 'dotenv/config';
 import axios from "axios";
+
 
 // Headless UI 2.x for React, for more info and examples you can check out https://github.com/tailwindlabs/headlessui
 import {
@@ -27,11 +29,11 @@ export default function OffcanvasWithActions() {
   function closeOffcanvas() {
     setIsOpen(false);
   }
-
+  const db_url = process.env.BASE_URL 
   function openOffcanvas() {
     setIsOpen(true);
     axios({
-      url: "http://localhost:8000/api/v1/Bible/query",
+      url: `${db_url}/api/v1/Bible/query`,
       data: {
         query: textValue
       },
