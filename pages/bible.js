@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TextareaElement from "@/components/ui/Textarea";
 import GeneratedTextareaElement from "@/components/ui/GeneratedTextArea";
+import FormElementsLargeSelect from "@/components/ui/SelectMenu";
 import 'dotenv/config';
 import axios from "axios";
 
@@ -130,6 +131,20 @@ export default function OffcanvasWithActions() {
                   
                     {/* Placeholder */}
                     <GeneratedTextareaElement value={textAns} onChange={handleAnswer}/>
+
+                    <div className="flex my-5">
+                      <p className="mr-5">Translation to</p>
+                      <FormElementsLargeSelect className="mx-20" />
+
+                      <button
+                        type="button"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg border border-purple-700 bg-purple-700 px-3 py-2 text-sm font-semibold leading-5 text-white hover:border-purple-600 hover:bg-purple-600 hover:text-white focus:ring focus:ring-purple-400/50 active:border-purple-700 active:bg-purple-700 dark:focus:ring-purple-400/90 ml-20"
+                      >
+                        Translate
+                      </button>
+                    </div>
+
+                    <GeneratedTextareaElement value={"translating..."} />
 {/* 
                     <TextareaElement className= "flex h-full flex-col items-center justify-center gap-5 rounded-lg border-2 border-dashed border-gray-200 dark:border-gray-700/75"/> */}
                     
