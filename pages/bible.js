@@ -26,13 +26,12 @@ export default function OffcanvasWithActions() {
   }
   function closeOffcanvas() {
     setIsOpen(false);
-    setTextAns("");
   }
 
   function openOffcanvas() {
     setIsOpen(true);
     axios({
-      url: "http://localhost:8000/api/v1/BhagavadGita/query",
+      url: "http://localhost:8000/api/v1/Bible/query",
       data: {
         query: textValue
       },
@@ -55,7 +54,7 @@ export default function OffcanvasWithActions() {
         {/* Placeholder */}
         <div className=" items-center justify-center rounded-lg  py-32 px-20  h-[70vh]">
           {/* Offcanvas Toggle Button */}
-          <h1 className="mx-auto text-4xl text-white my-20 flex items-center justify-center">Bhagavad Gita</h1>
+          <h1 className="mx-auto text-4xl text-white my-20 flex items-center justify-center">Holy Bible</h1>
           <TextareaElement value={textValue} onChange={handleTextareaChange} className="my-20"/>
           <button
             onClick={openOffcanvas}
@@ -98,7 +97,7 @@ export default function OffcanvasWithActions() {
                   {/* Header */}
                   <div className="flex min-h-16 flex-none items-center justify-between border-b border-gray-100 px-5 dark:border-gray-800 md:px-7">
                     <DialogTitle as="h3" className="py-5 font-medium">
-                      Bhagavad Gita
+                      Psalms Bible
                     </DialogTitle>
 
                     {/* Close Button */}
@@ -142,7 +141,7 @@ export default function OffcanvasWithActions() {
                       type="button"
                       className="inline-flex items-center justify-center gap-2 rounded-lg border border-purple-700 bg-purple-700 px-3 py-2 text-sm font-semibold leading-5 text-white hover:border-purple-600 hover:bg-purple-600 hover:text-white focus:ring focus:ring-purple-400/50 active:border-purple-700 active:bg-purple-700 dark:focus:ring-purple-400/90"
                     >
-                      Keep Asking
+                      Keep asking
                     </button>
 
                   </div>

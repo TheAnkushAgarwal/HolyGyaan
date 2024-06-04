@@ -79,7 +79,7 @@ import {
                     <MenuItem>
                       {({ focus }) => (
                         <a
-                          href="#"
+                          href="bible"
                           className={`group flex items-center justify-between gap-2 rounded-lg border border-transparent px-2.5 py-2 text-sm font-medium ${
                             focus
                               ? "bg-purple-50 text-purple-800 dark:border-transparent dark:bg-gray-700/75 dark:text-white"
