@@ -73,9 +73,7 @@ export default function OffcanvasWithActions() {
       method: "post",
     })
       .then((response) => {
-        if (response.data.chatMessage.status == "completed")
-          setTextAns(response.data.chatMessage.answer);
-        else setTextAns("OOPS! feels like rush hour crowd");
+          setTranslateAns(response.data.translation);
       })
       .catch((err) => {
         console.error(err);
