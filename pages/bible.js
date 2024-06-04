@@ -29,7 +29,7 @@ export default function OffcanvasWithActions() {
   function closeOffcanvas() {
     setIsOpen(false);
   }
-  const db_url = process.env.BASE_URL 
+  const db_url = process.env.NEXT_PUBLIC_BASE_URL 
   function openOffcanvas() {
     setIsOpen(true);
     axios({
