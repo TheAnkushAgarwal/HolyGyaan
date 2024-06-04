@@ -10,7 +10,7 @@ const Navbar = () => {
     const menuBtnEl = useRef()
 
     const navigation = [
-        { name: "About HolyGyaan", href: "/#holyGyaan" },
+        { name: "About HolyGyaan", href: "/holyGyaan" },
         { name: "Features", href: "/#features" },
         { name: "Testimonials", href: "/#testimonials" },
         { name: "FAQs", href: "/#faqs" },
