@@ -1,19 +1,19 @@
 import SectionWrapper from "@/components/SectionWrapper"
-import Feature1 from "@/public/images/Feature-1.svg"
-import Feature2 from "@/public/images/Feature-2.svg"
+import Feature1 from "@/public/images/gita.jpeg"
+import Feature2 from "@/public/images/bible.png"
 import Image from "next/image"
 
 const VisualFeatures = () => {
 
     const features = [
         {
-            title: "Send thousands of emails",
-            desc: "Send thousands of emails quickly and easily. You can customize the content of each email",
+            title: "Bhagavad Gita",
+            desc: "The Bhagavad Gita is a 700-verse Hindu scripture in the Mahabharata, presenting a dialogue between Prince Arjuna and the god Krishna, who serves as his charioteer. It covers key philosophical and ethical issues, focusing on duty, righteousness, and the path to spiritual enlightenment.",
             img: Feature1
         },
         {
-            title: "Write your email content using AI",
-            desc: "AI-powered email content writing is the perfect solution for busy professionals who need to quickly create engaging emails.",
+            title: "Holy Bible",
+            desc: "The Holy Bible is a collection of sacred texts central to Christianity, comprising the Old and New Testaments. It encompasses the creation of the world, the history of Israel, the life and teachings of Jesus Christ, and moral and spiritual guidance for believers. ",
             img: Feature2
         },
     ]
@@ -22,10 +22,10 @@ const VisualFeatures = () => {
             <div className="custom-screen text-gray-300">
                 <div className="max-w-xl mx-auto text-center">
                     <h2 className="text-gray-50 text-3xl font-semibold sm:text-4xl">
-                        Take your email marketing to the next level with HolyGyaan
+                        Take your spiritual knowledge to the next level with HolyGyaan
                     </h2>
                     <p className="mt-3">
-                        With HolyGyaan's powerful features, you can easily create and send beautiful emails that will engage your customers and drive more sales.
+                        With HolyGyaan's powerful features, you can easily ask and make queries from holybooks.
                     </p>
                 </div>
                 <div className="mt-12">

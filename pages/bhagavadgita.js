@@ -54,7 +54,7 @@ export default function OffcanvasWithActions() {
       {/* Offcanvas: With Actions */}
       <div>
         {/* Placeholder */}
-        <div className=" items-center justify-center rounded-lg  py-32 px-20  h-[70vh]">
+        <div className=" items-center justify-center rounded-lg  py-32 px-20  h-[65vh]">
           {/* Offcanvas Toggle Button */}
           <h1 className="mx-auto text-4xl text-white my-20 flex items-center justify-center">Bhagavad Gita</h1>
           <TextareaElement value={textValue} onChange={handleTextareaChange} className="my-20 h-[50%]"/>
